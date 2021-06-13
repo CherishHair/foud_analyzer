@@ -41,10 +41,12 @@ def get_all():
             all_data.extend(data)
             # time.sleep(1)
         else:
-            return all_data
+            break
+        df = pd.DataFrame(all_data,
+                          columns=['id', 'name', 'corp_id', 'corp_name', 'at_present_fouds_id', 'at_present_fouds_name',
+                                   'job_duration_days', 'at_present_total_size'])
+        df.to_csv('../data/' + time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) + '.csv')
+        return df
 
 
-df = pd.DataFrame(get_all(),
-                  columns=['id', 'name', 'corp_id', 'corp_name', 'at_present_fouds_id', 'at_present_fouds_name',
-                           'job_duration_days', 'at_present_total_size'])
-df.to_csv('../data/' + time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) + '.csv')
+
