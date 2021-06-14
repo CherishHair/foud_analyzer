@@ -9,6 +9,7 @@ database = dict()
 with open('./data/foud_datail.json', 'r') as f:
     database = json.load(f)
 
+
 def get_data_by_code(code):
     content = database[str(code)]
     if len(content) == 0:

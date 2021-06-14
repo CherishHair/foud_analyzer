@@ -31,7 +31,8 @@ def get_data_by_page(page=1):
             if (d[-2])[-2:] != '亿元':
                 logging.error("invalid foud size = ", d[-2])
         codes = re.findall(r"[0-9]+", d[4])
-        col = [d[0], d[1], d[2], d[3], d[4], d[5], int(d[6]), float(result[0]) * 100000000,float(best_profit[0]),len(codes)]
+        col = [d[0], d[1], d[2], d[3], d[4], d[5], int(d[6]), float(result[0]) * 100000000, float(best_profit[0]),
+               len(codes)]
         data.append(col)
     return data
 

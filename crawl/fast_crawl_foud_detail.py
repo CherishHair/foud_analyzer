@@ -45,6 +45,7 @@ def build_database():
         t = threading.Thread(target=get_data_by_code, args=(task, data))
         threads.append(t)
         t.start()
+    # 等待线程结束
     for t in threads:
         t.join()
     f = open('../data/foud_datail.json', 'w')
