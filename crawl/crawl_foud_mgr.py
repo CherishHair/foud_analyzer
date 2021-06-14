@@ -22,11 +22,16 @@ def get_data_by_page(page=1):
     data = []
     for d in jsObj.data:
         result = ["-1.0"]
+        best_profit = ['0.0']
+        if d[-1] != "--":
+            best_profit = re.findall(r"""[0-9]+\.[0-9]*""", d[-1])
+
         if d[-2] != "--":
             result = re.findall(r"""[0-9]+\.[0-9]*""", d[-2])
             if (d[-2])[-2:] != '亿元':
                 logging.error("invalid foud size = ", d[-2])
-        col = [d[0], d[1], d[2], d[3], d[4], d[5], int(d[6]), float(result[0]) * 100000000]
+        codes = re.findall(r"[0-9]+", d[4])
+        col = [d[0], d[1], d[2], d[3], d[4], d[5], int(d[6]), float(result[0]) * 100000000,float(best_profit[0]),len(codes)]
         data.append(col)
     return data
 
@@ -42,11 +47,12 @@ def get_all():
             # time.sleep(1)
         else:
             break
-        df = pd.DataFrame(all_data,
-                          columns=['id', 'name', 'corp_id', 'corp_name', 'at_present_fouds_id', 'at_present_fouds_name',
-                                   'job_duration_days', 'at_present_total_size'])
-        df.to_csv('../data/' + time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) + '.csv')
-        return df
+    df = pd.DataFrame(all_data,
+                      columns=['id', 'name', 'corp_id', 'corp_name', 'at_present_fouds_id', 'at_present_fouds_name',
+                               'job_duration_days', 'at_present_total_size', 'at_present_best_profit',
+                               'at_present_fouds_num'])
+    df.to_csv('../data/' + time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) + '.csv')
+    return df
 
 
-
+get_all()
