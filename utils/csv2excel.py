@@ -26,3 +26,7 @@ def csv_to_xls(csv_path, xls_path):
         header=False
     )
     writer.save()
+
+
+
+csv_to_xls('../data/avg_daily_income_2021-06-21-13-31-18' + '.csv', '../data/avg_daily_income_2021-06-21-13-31-18' + '.xls')

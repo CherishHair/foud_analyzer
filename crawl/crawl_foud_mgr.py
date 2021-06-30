@@ -45,14 +45,14 @@ def get_all():
         if len(data) > 0:
             page = page + 1
             all_data.extend(data)
-            # time.sleep(1)
+            time.sleep(0.2)
         else:
             break
     df = pd.DataFrame(all_data,
                       columns=['id', 'name', 'corp_id', 'corp_name', 'at_present_fouds_id', 'at_present_fouds_name',
                                'job_duration_days', 'at_present_total_size', 'at_present_best_profit',
                                'at_present_fouds_num'])
-    df.to_csv('../data/' + time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) + '.csv')
+    df.to_csv('../data/' + time.strftime("%Y-%m-%d", time.localtime()) + '.csv')
     return df
 
 

@@ -7,4 +7,7 @@ def get_days_from_now(ms_timestamp):
     return delta.days
 
 
-
+def get_timestamp_before_now(days):
+    now = datetime.datetime.now()
+    delta = now - datetime.timedelta(days=days)
+    return delta.timestamp()

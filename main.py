@@ -5,15 +5,12 @@ import time
 
 import pandas as pd
 from crawl.crawl_foud_detail import get_data_by_code
-from crawl.crawl_foud_mgr import get_all
-
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 data = pd.read_csv('./data/2021-06-13-14-38-23.csv')
 saved_data = pd.read_csv('./data/avg_daily_income_2021-06-14-00-45-04.csv')
-
 
 result = []
 top5 = []
